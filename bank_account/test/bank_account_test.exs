@@ -28,4 +28,16 @@ defmodule BankAccountTest do
     assert current_balance == "2.150,14"
   end
 
+  test "import Deutsche Bank Kreditkartentransaktionen csv" do
+    filepath = "test/fixtures/Kreditkartentransaktionen123456789_20140312.csv"
+    assert {:ok, imported} = BankAccount.import("Deutsche Bank", filepath)
+
+    account_title = Map.get(imported, :account_title)
+    current_balance = Map.get(imported, :current_balance)
+
+    assert account_title == "Kreditkartentransaktionen"
+
+    assert current_balance == "-41,80"
+  end
+
 end

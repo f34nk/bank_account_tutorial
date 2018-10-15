@@ -1,0 +1,13 @@
+Kreditkartentransaktionen;;Kundennummer: 123 1234567
+MasterCard 1234 5678 9012 3456 MAX MUSTERMAN
+Offene / aktuelle Umsätze per: 14.03.2014
+Abrechnungsdatum: 23.02.2014
+Belegdatum;Eingangstag;Verwendungszweck;Fremdwährung;Betrag;Kurs;Betrag;Währung
+23.02.2014;26.02.2014;Lorem ipsum  ONLINESHOP BERLIN;;;;- 1,70;EUR
+23.02.2014;26.02.2014;Lorem ipsum  ONLINESHOP BERLIN;;;;- 1,30;EUR
+23.02.2014;26.02.2014;Lorem ipsum  ONLINESHOP BERLIN;;;;- 2,80;EUR
+01.03.2014;05.03.2014;DIGITALOCEAN.COM 123456789;USD;- 12,15;1,21500;- 10,00;EUR
+05.03.2014;05.03.2014;ENTGELT FÜR AUSLANDSEINSA TZ;EUR;- 1,50;;- 1,50;EUR
+03.03.2014;05.03.2014;Lorem ipsum  ONLINESHOP BERLIN;;;;- 7,00;EUR
+10.03.2014;12.03.2014;Lorem ipsum  ONLINESHOP BERLIN;;;;- 2,80;EUR
+Online-Saldo:;;;;;;-41,80;EUR
