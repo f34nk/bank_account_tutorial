@@ -1,6 +1,6 @@
-# Bank Account Tutorial
-
 **Work in Progress**
+
+# Bank Account Tutorial
 
 As a personal exercise I implemented an Elixir application that gives me some insights about the transactions on my bank account. At the end of this demo, there should be a nice line graph displaying all transactions imported from multiple files.
 
