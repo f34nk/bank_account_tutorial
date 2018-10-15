@@ -1,0 +1,11 @@
+Umsätze persönliches Konto (00);;;Kundennummer: 123 1234567
+27.10.2014 - 09.11.2014
+Letzter Kontostand;;;;1.999,99;EUR
+Vorgemerkte und noch nicht gebuchte Umsätze sind nicht Bestandteil dieser Übersicht.
+Buchungstag;Wert;Umsatzart;Begünstigter / Auftraggeber;Verwendungszweck;IBAN;BIC;Kundenreferenz;Mandatsreferenz ;Gläubiger ID;Fremde Gebühren;Betrag;Abweichender Empfänger;Anzahl der Aufträge;Anzahl der Schecks;Soll;Haben;Währung
+27.10.2014;27.10.2014;"SEPA-Gutschrift von";Lorem ipsum;Rechnung 123456;DE01234567890123456789;;;;;;;;;;;1.000,00;EUR
+27.10.2014;28.10.2014;;;0123456789 MAX MUSTERMAN DEUTSCHE BANK KREDITKARTE MAX MUSTERMAN;;;;;;;;;;;-99,99;;EUR
+31.10.2014;31.10.2014;"Kartenzahlung";;LEBENSMITTEL;;;;;;;;;;;-19,19;;EUR
+01.11.2014;01.11.2014;"SEPA-Lastschrift von";AMAZON EU S.A R.L., NIEDERLASSUNG DEUTSCHLAND;Amazon.de;DE01234567890123456789;ABCDEFG;0123456789;;DE01234567890123456789;;;;;;-10,00;;EUR
+09.11.2014;09.11.2014;"Auszahlung Geldautomat";;Postbank//Berlin;;;;;;;;;;;-100,00;;EUR
+Kontostand;09.11.2014;;;2.770,81;EUR
