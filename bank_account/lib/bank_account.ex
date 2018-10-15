@@ -9,13 +9,17 @@ defmodule BankAccount do
   ## Examples
 
       iex> BankAccount.import("Deutsche Bank", "test")
-      {:error, "No importer found for file test"}
+      {:error, "No importer found for file: test"}
 
   """
   def import("Deutsche Bank", filepath) when not is_nil(filepath) do
-    case Path.extname(filepath) do
-      ".csv" -> DeutscheBankKontoumsaetzeCsv.import(filepath)
-      _ -> {:error, "No importer found for file #{filepath}"}
+    filename = Path.basename(filepath)
+
+    cond do
+      Path.extname(filepath) == ".csv" and String.starts_with?(filename, "Kontoumsaetze_") ->
+        DeutscheBankKontoumsaetzeCsv.import(filepath)
+      true -> {:error, "No importer found for file: #{filepath}"}
     end
+
   end
 end

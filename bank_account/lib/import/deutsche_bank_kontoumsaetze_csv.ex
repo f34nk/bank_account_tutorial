@@ -1,15 +1,15 @@
 defmodule DeutscheBankKontoumsaetzeCsv do
 
   def parse_line(0, "Umsätze " <> rest) do
-    case Regex.run(~r/([A-Za-zm ö]*) \(([0-9]{2})\);{0,}Kundennummer: ([0-9]{3}) ([0-9]{7})/, rest) do
+    case Regex.run(~r/([A-Za-zm ö]*) \(([0-9]{2})\);{3}Kundennummer: ([0-9]{3}) ([0-9]{7})/, rest) do
       [_, account_title, account_index, branch_number, account_number] ->
         {0, %{account_title: account_title, account_index: account_index, branch_number: branch_number, account_number: account_number}}
-      _ -> {:error, "Failed to parse line 0"}
+      _ -> raise "Failed to parse line 0"
     end
   end
 
   def parse_line(0, _) do
-    {:error, "Failed to parse line 0"}
+    raise "Failed to parse line 0"
   end
 
   # 27.10.2014 - 21.04.2015
@@ -27,7 +27,7 @@ defmodule DeutscheBankKontoumsaetzeCsv do
   end
 
   def parse_line(2, _) do
-    {:error, "Failed to parse line 2"}
+    raise "Failed to parse line 2"
   end
 
   def parse_line(3, "Vorgemerkte und noch nicht gebuchte Umsätze sind nicht Bestandteil dieser Übersicht.") do
@@ -35,7 +35,7 @@ defmodule DeutscheBankKontoumsaetzeCsv do
   end
 
   def parse_line(3, _) do
-    {:error, "Failed to parse line 3"}
+    raise "Failed to parse line 3"
   end
 
   # Buchungstag;Wert;Umsatzart;Begünstigter / Auftraggeber;Verwendungszweck;IBAN;BIC;Kundenreferenz;Mandatsreferenz ;Gläubiger ID;Fremde Gebühren;Betrag;Abweichender Empfänger;Anzahl der Aufträge;Anzahl der Schecks;Soll;Haben;Währung
@@ -99,13 +99,13 @@ defmodule DeutscheBankKontoumsaetzeCsv do
   end
 
   def import(filepath) do
+    filename = Path.basename(filepath)
+
     stream = filepath
     |> File.stream!
     |> Stream.map(&String.strip/1)
     |> Stream.with_index
     |> Stream.map(fn {line, i} -> {i, line} end)
-
-    filename = Path.basename(filepath)
 
     parsed = Enum.reduce(stream, [], fn(line, lines) ->
       [parse(line)|lines]

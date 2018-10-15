@@ -1,0 +1,11 @@
+Umsätze SparCard (60);;;Kundennummer: 123 1234567
+27.10.2014 - 27.12.2014
+Letzter Kontostand;;;;1.999,99;EUR
+Vorgemerkte und noch nicht gebuchte Umsätze sind nicht Bestandteil dieser Übersicht.
+Buchungstag;Wert;Umsatzart;Begünstigter / Auftraggeber;Verwendungszweck;IBAN;BIC;Kundenreferenz;Mandatsreferenz ;Gläubiger ID;Fremde Gebühren;Betrag;Abweichender Empfänger;Anzahl der Aufträge;Anzahl der Schecks;Soll;Haben;Währung
+27.10.2014;27.10.2014;;;Sparbetrag KTO 1234567 BLZ 1234567 Musterman, Max;;;;;;;;;;;;50,00;EUR
+29.12.2014;31.12.2014;;;Kapitalertragsteuer;;;;;;;;;;;-0,05;;EUR
+29.12.2014;31.12.2014;;;Habenzinsen;;;;;;;;;;;;0,20;EUR
+27.11.2014;27.10.2014;;;Sparbetrag KTO 1234567 BLZ 1234567 Musterman, Max;;;;;;;;;;;;50,00;EUR
+27.12.2014;27.10.2014;;;Sparbetrag KTO 1234567 BLZ 1234567 Musterman, Max;;;;;;;;;;;;50,00;EUR
+Kontostand;27.12.2014;;;2.150,14;EUR
