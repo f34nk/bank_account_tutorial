@@ -18,7 +18,7 @@ Right now, only CSV files from "Deutsche Bank" are supported.
 
 https://github.com/f34nk/bank_account_tutorial/tree/part_2
 
-Added kipcole9's (Money)[https://github.com/kipcole9/money] package to perform basic money operations.
+Added kipcole9's [Money](https://github.com/kipcole9/money) package to perform basic money operations.
 
 In progress...
 
