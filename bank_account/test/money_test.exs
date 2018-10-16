@@ -54,7 +54,7 @@ defmodule MoneyTest do
     assert Regex.run(pattern, string) == ["1", "1"]
   end
 
-  test "format string list to Money" do
+  test "create Money from string list" do
     list = ["1.000.000,99", "1.000.000", "99"]
 
     result = case list do
@@ -72,7 +72,7 @@ defmodule MoneyTest do
     assert result.amount == Decimal.new(1000000.99)
   end
 
-  test "can convert Money to string in german format" do
+  test "convert Money to string in german format" do
     # Be sure to add "de" to the supported locales in the configuration.
     # config :ex_cldr, locales: ["de"]
 
