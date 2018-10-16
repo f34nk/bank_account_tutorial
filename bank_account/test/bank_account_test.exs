@@ -2,7 +2,7 @@ defmodule BankAccountTest do
   use ExUnit.Case
   # doctest BankAccount
 
-  test "import Deutsche Bank persönliches Konto csv" do
+  test "can import Deutsche Bank persönliches Konto csv" do
     filepath = "test/fixtures/Kontoumsaetze_persoenliches_Konto.csv"
     assert {:ok, imported} = BankAccount.import("Deutsche Bank", filepath)
 
@@ -15,7 +15,7 @@ defmodule BankAccountTest do
     assert current_balance == "2.770,81"
   end
 
-  test "import Deutsche Bank SparCard csv" do
+  test "can import Deutsche Bank SparCard csv" do
     filepath = "test/fixtures/Kontoumsaetze_SparCard.csv"
     assert {:ok, imported} = BankAccount.import("Deutsche Bank", filepath)
 
@@ -28,7 +28,7 @@ defmodule BankAccountTest do
     assert current_balance == "2.150,14"
   end
 
-  test "import Deutsche Bank Kreditkartentransaktionen csv" do
+  test "can import Deutsche Bank Kreditkartentransaktionen csv" do
     filepath = "test/fixtures/Kreditkartentransaktionen123456789_20140312.csv"
     assert {:ok, imported} = BankAccount.import("Deutsche Bank", filepath)
 
