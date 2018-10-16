@@ -7,7 +7,8 @@ defmodule BankAccount.MixProject do
       version: "0.1.0",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      compilers: Mix.compilers ++ [:cldr]
     ]
   end
 
@@ -27,11 +28,11 @@ defmodule BankAccount.MixProject do
       {:timex, "~> 3.1"},
 
       # https://github.com/liuggio/money
-      # {:money, "~> 1.2.1"}
+      # {:money, "~> 1.2.1"},
 
       # https://github.com/kipcole9/money
-      # {:ex_money, "~> 1.0"},
-      # {:jason, "~> 1.0"}
+      {:ex_money, "~> 2.9"},
+      {:jason, "~> 1.0"}
     ]
   end
 end
