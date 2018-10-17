@@ -24,6 +24,10 @@ Added kipcole9's [Money](https://github.com/kipcole9/money) package to perform b
 
 See [money_test](https://github.com/f34nk/bank_account_tutorial/blob/part_2/bank_account/test/money_test.exs)
 
+
+Added phoenix application `bank_account_web` (without Ecto).
+The page view now renders imported data in a simple table.
+
 In progress...
 
 ## Roadmap
