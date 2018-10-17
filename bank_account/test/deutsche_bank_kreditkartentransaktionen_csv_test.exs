@@ -17,7 +17,7 @@ defmodule DeutscheBankKreditkartentransaktionenCsvTest do
   test "can parse line 2 with current_date" do
     line = "Offene / aktuelle Umsätze per: 14.03.2014"
     result = DeutscheBankKreditkartentransaktionenCsv.parse_line(2, line)
-    assert result == {2, %{current_date: ~N[2014-03-14 00:00:00]}}
+    assert result == {2, %{current_date: "14.03.2014"}}
   end
 
 end

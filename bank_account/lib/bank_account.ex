@@ -13,9 +13,7 @@ defmodule BankAccount do
 
   """
   def import("Deutsche Bank", filepath) when not is_nil(filepath) do
-
     filename = Path.basename(filepath)
-
     cond do
       Path.extname(filepath) == ".csv" and String.starts_with?(filename, "Kontoumsaetze_") ->
         DeutscheBankKontoumsaetzeCsv.import(filepath)

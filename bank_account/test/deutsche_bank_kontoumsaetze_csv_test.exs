@@ -17,6 +17,6 @@ defmodule DeutscheBankKontoumsaetzeCsvTest do
   test "can parse line 1 with valid time string" do
     line = "27.10.2016 - 21.04.2017"
     result = DeutscheBankKontoumsaetzeCsv.parse_line(1, line)
-    assert result == {1, %{end_date: ~N[2017-04-21 00:00:00], start_date: ~N[2016-10-27 00:00:00]}}
+    assert result == {1, %{end_date: "21.04.2017", start_date: "27.10.2016"}}
   end
 end

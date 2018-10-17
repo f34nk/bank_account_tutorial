@@ -27,9 +27,6 @@ defmodule BankAccount.MixProject do
       {:csv, "~> 1.4.2"},
       {:timex, "~> 3.1"},
 
-      # https://github.com/liuggio/money
-      # {:money, "~> 1.2.1"},
-
       # https://github.com/kipcole9/money
       {:ex_money, "~> 2.10"},
       {:jason, "~> 1.0"}
