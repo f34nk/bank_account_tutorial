@@ -73,23 +73,21 @@ defmodule DeutscheBankKontoumsaetzeCsv do
     end
   end
 
-  def process([{index, %{row: row}} | entries], %{rows: rows} = result) do
-    result = Map.put(result, :rows, rows ++ [row])
+  def process([{index, %{row: row}} | entries], %{transactions: transactions} = return) do
+    result = Map.put(return, :transactions, transactions ++ [row])
     process(entries, result)
   end
 
-  def process([{index, %{row: row}} | entries], result) do
-    result = Map.put(result, :rows, [row])
+  def process([{index, %{row: row}} | entries], return) do
+    result = Map.put(return, :transactions, [row])
     process(entries, result)
   end
 
-  def process([{index, map} | entries], result) do
-    process(entries, Map.merge(result, map))
+  def process([{index, map} | entries], return) do
+    process(entries, Map.merge(return, map))
   end
 
-  def process([], result) do
-    result
-  end
+  def process([], return), do: return
 
   def import(filepath) do
     filename = Path.basename(filepath)

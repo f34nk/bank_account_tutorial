@@ -4,11 +4,11 @@ defmodule BankAccountTest do
 
   test "can import Deutsche Bank persönliches Konto csv" do
     filepath = "test/fixtures/Kontoumsaetze_persoenliches_Konto.csv"
-    assert {:ok, imported} = BankAccount.import("Deutsche Bank", filepath)
+    assert {:ok, data} = BankAccount.import("Deutsche Bank", filepath)
 
-    account_title = Map.get(imported, :account_title)
-    last_balance = Map.get(imported, :last_balance)
-    current_balance = Map.get(imported, :current_balance)
+    account_title = Map.get(data, :account_title)
+    last_balance = Map.get(data, :last_balance)
+    current_balance = Map.get(data, :current_balance)
 
     assert account_title == "persönliches Konto"
     assert last_balance == "1.999,99"
@@ -17,11 +17,11 @@ defmodule BankAccountTest do
 
   test "can import Deutsche Bank SparCard csv" do
     filepath = "test/fixtures/Kontoumsaetze_SparCard.csv"
-    assert {:ok, imported} = BankAccount.import("Deutsche Bank", filepath)
+    assert {:ok, data} = BankAccount.import("Deutsche Bank", filepath)
 
-    account_title = Map.get(imported, :account_title)
-    last_balance = Map.get(imported, :last_balance)
-    current_balance = Map.get(imported, :current_balance)
+    account_title = Map.get(data, :account_title)
+    last_balance = Map.get(data, :last_balance)
+    current_balance = Map.get(data, :current_balance)
 
     assert account_title == "SparCard"
     assert last_balance == "1.999,99"
@@ -30,10 +30,10 @@ defmodule BankAccountTest do
 
   test "can import Deutsche Bank Kreditkartentransaktionen csv" do
     filepath = "test/fixtures/Kreditkartentransaktionen123456789_20140312.csv"
-    assert {:ok, imported} = BankAccount.import("Deutsche Bank", filepath)
+    assert {:ok, data} = BankAccount.import("Deutsche Bank", filepath)
 
-    account_title = Map.get(imported, :account_title)
-    current_balance = Map.get(imported, :current_balance)
+    account_title = Map.get(data, :account_title)
+    current_balance = Map.get(data, :current_balance)
 
     assert account_title == "Kreditkartentransaktionen"
 
