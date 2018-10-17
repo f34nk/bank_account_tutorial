@@ -31,7 +31,7 @@ defmodule BankAccount.MixProject do
       # {:money, "~> 1.2.1"},
 
       # https://github.com/kipcole9/money
-      {:ex_money, "~> 2.9"},
+      {:ex_money, "~> 2.10"},
       {:jason, "~> 1.0"}
     ]
   end
