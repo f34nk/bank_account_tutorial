@@ -35,5 +35,7 @@ In progress...
 ## Roadmap
 
 - [x] Part 1: Import CSV files from a "Deutsche Bank" account
-- [ ] Calculate basic operations
-- [ ] Render account
+- [ ] Part 2:
+	- [ ] Calculate basic operations
+	- [x] Render account as line graph
+	- [x] Render account as table
