@@ -1,4 +1,4 @@
-defmodule Validation do
+defmodule BankAccount.Validation do
 
   def sum_up_transactions([%{currency: "EUR" = currency, debit: "", have: have}|transactions], return) do
     result = Money.add!(return, Money.new(have, currency, locale: "de"))

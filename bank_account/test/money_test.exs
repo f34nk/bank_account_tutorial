@@ -34,6 +34,11 @@ defmodule MoneyTest do
     result = Money.new("1000000.99", :EUR)
     |> Money.to_string!([currency: :EUR, locale: "de", format: "#,##0.##"])
     assert "1.000.000,99" = result
+
+    result = Money.new("1.000,99", :EUR, locale: "de")
+    |> Money.to_string!([format: "###0.##"])
+    assert "1000.99" = result
+
   end
 
 end

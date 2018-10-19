@@ -1,12 +1,13 @@
 <%= case @data do %>
-	<% %{account_index: account_index, account_number: account_number, account_title: account_title, branch_number: branch_number, currency: "EUR",  last_balance: last_balance, current_balance: current_balance, current_balance_date: current_balance_date, start_date: start_date, end_date: end_date, headers: %{beneficiary_client: beneficiary_client, bic: bic, booking_date: booking_date, booking_value: booking_value, creditors_id: creditors_id, currency: currency, customer_reference: customer_reference, debit: debit, divergent_receiver: divergent_receiver, extra_amount: extra_amount, extra_fees: extra_fees, have: have, iban: iban, mandate_reference: mandate_reference, number_of_checks: number_of_checks, number_of_orders: number_of_orders, sales_type: sales_type, usage: usage}, transactions: transactions} -> %>
-<h4>Umsätze <%= account_title %> (<%= account_index %>)</h4>
+	<% %{account_index: account_index, account_number: account_number, account_title: account_title, branch_number: branch_number, currency: "EUR",  last_balance: last_balance, current_balance: current_balance, current_balance_date: current_balance_date, start_date: start_date, end_date: end_date, headers: %{beneficiary_client: beneficiary_client, bic: bic, booking_date: booking_date, booking_value: booking_value, creditors_id: creditors_id, currency: currency, customer_reference: customer_reference, debit: debit, divergent_receiver: divergent_receiver, extra_amount: extra_amount, extra_fees: extra_fees, have: have, iban: iban, mandate_reference: mandate_reference, number_of_checks: number_of_checks, number_of_orders: number_of_orders, sales_type: sales_type, usage: usage, total_balance: total_balance}, transactions: transactions} -> %>
+
+<h2>Umsätze <%= account_title %> (<%= account_index %>)</h2>
 <p>
 	<%= start_date %> - <%= end_date %><br>
 	<b>Letzter Kontostand:</b> <%= last_balance %><br>
 	<b>Kontostand: </b> <%= current_balance %><br>
 </p>
-<table class="table">
+<table class="data-table display">
   <thead>
     <tr>
       <th scope="col"><%= booking_date %></th>
@@ -15,11 +16,12 @@
       <th scope="col"><%= usage %></th>
       <th scope="col"><%= debit %></th>
       <th scope="col"><%= have %></th>
+      <th scope="col"><%= total_balance %></th>
     </tr>
   </thead>
   <tbody>
 
-  	<%= for %{booking_date: booking_date, debit: debit, have: have, beneficiary_client: beneficiary_client, sales_type: sales_type, usage: usage} <- transactions do %>
+  	<%= for %{booking_date: booking_date, debit: debit, have: have, beneficiary_client: beneficiary_client, sales_type: sales_type, usage: usage, total_balance: total_balance} <- transactions do %>
   	<tr>
       <th scope="row"><%= booking_date %></th>
       <td><%= sales_type %></td>
@@ -27,9 +29,23 @@
       <td><%= usage %></td>
       <td class="debit"><%= debit %></td>
       <td class="have"><%= have %></td>
+      <td class="total"><%= total_balance %></td>
     </tr>
   	<% end %>
 
   </tbody>
 </table>
+
+  <% other -> %> <%= other %>
+
 <% end %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $.fn.dataTable.moment( 'DD.MM.YYYY' );
+  var table = $('.data-table').DataTable({
+    "order": [[ 0, "asc" ]]
+  });
+  // console.log(table.data());
+});
+</script>

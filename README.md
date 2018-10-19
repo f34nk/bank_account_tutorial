@@ -26,7 +26,9 @@ See [money_test](https://github.com/f34nk/bank_account_tutorial/blob/part_2/bank
 
 
 Created phoenix application `bank_account_web` (without Ecto) and added `bank_account` as a dependency.
-The page view renders imported data in a simple table.
+
+Render data in a line graph using [Chartjs](http://www.chartjs.org).
+Render data in a table using boottsrap 4 [Datatable](https://datatables.net).
 
 In progress...
 
