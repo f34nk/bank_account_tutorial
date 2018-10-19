@@ -1,0 +1,12 @@
+td.debit {
+	color: red;
+}
+td.have {
+	color: green;
+}
+td.total {
+	color: blue;
+}
+/*canvas {
+	max-width: 50%;
+}*/

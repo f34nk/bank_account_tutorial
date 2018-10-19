@@ -15,8 +15,6 @@ defmodule DeutscheBankKontoumsaetzeCsv do
   # 27.10.2014 - 21.04.2015
   def parse_line(1, time_period) do
     [_, start_date, end_date] = Regex.run(~r/([0-9.]*) - ([0-9.]*)/, time_period)
-    start_date = Timex.parse!(start_date, "%d.%m.%Y", :strftime)
-    end_date = Timex.parse!(end_date, "%d.%m.%Y", :strftime)
     {1, %{start_date: start_date, end_date: end_date}}
   end
 
@@ -50,16 +48,11 @@ defmodule DeutscheBankKontoumsaetzeCsv do
   # Kontostand;21.04.2015;;;2.770,81;EUR
   def parse_line(index, "Kontostand" <> rest) when index > 4 do
     [_, current_balance_date, _, _, current_balance, currency] = String.split(rest, ";")
-    current_balance_date = Timex.parse!(current_balance_date, "%d.%m.%Y", :strftime)
     {index, %{current_balance_date: current_balance_date, current_balance: current_balance, currency: currency}}
   end
 
   # Buchungstag;Wert;Umsatzart;Begünstigter / Auftraggeber;Verwendungszweck;IBAN;BIC;Kundenreferenz;Mandatsreferenz ;Gläubiger ID;Fremde Gebühren;Betrag;Abweichender Empfänger;Anzahl der Aufträge;Anzahl der Schecks;Soll;Haben;Währung
   def parse_row([booking_date, booking_value, sales_type, beneficiary_client, usage, iban, bic, customer_reference, mandate_reference, creditors_id, extra_fees, extra_amount, divergent_receiver, number_of_orders, number_of_checks, debit, have, currency] = row) do
-
-    booking_date = Timex.parse!(booking_date, "%d.%m.%Y", :strftime)
-    booking_value = Timex.parse!(booking_value, "%d.%m.%Y", :strftime)
-
     %{booking_date: booking_date, booking_value: booking_value, sales_type: sales_type, beneficiary_client: beneficiary_client, usage: usage, iban: iban, bic: bic, customer_reference: customer_reference, mandate_reference: mandate_reference, creditors_id: creditors_id, extra_fees: extra_fees, extra_amount: extra_amount, divergent_receiver: divergent_receiver, number_of_orders: number_of_orders, number_of_checks: number_of_checks, debit: debit, have: have, currency: currency}
   end
 
@@ -80,23 +73,21 @@ defmodule DeutscheBankKontoumsaetzeCsv do
     end
   end
 
-  def process([{index, %{row: row}} | entries], %{rows: rows} = result) do
-    result = Map.put(result, :rows, rows ++ [row])
+  def process([{index, %{row: row}} | entries], %{transactions: transactions} = return) do
+    result = Map.put(return, :transactions, transactions ++ [row])
     process(entries, result)
   end
 
-  def process([{index, %{row: row}} | entries], result) do
-    result = Map.put(result, :rows, [row])
+  def process([{index, %{row: row}} | entries], return) do
+    result = Map.put(return, :transactions, [row])
     process(entries, result)
   end
 
-  def process([{index, map} | entries], result) do
-    process(entries, Map.merge(result, map))
+  def process([{index, map} | entries], return) do
+    process(entries, Map.merge(return, map))
   end
 
-  def process([], result) do
-    result
-  end
+  def process([], return), do: return
 
   def import(filepath) do
     filename = Path.basename(filepath)

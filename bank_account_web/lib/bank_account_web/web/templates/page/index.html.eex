@@ -1,0 +1,5 @@
+
+
+<%= BankAccountWeb.Web.PageView.render "data_chart.html", data: @data %>
+
+<%= BankAccountWeb.Web.PageView.render "data_table.html", data: @data %>

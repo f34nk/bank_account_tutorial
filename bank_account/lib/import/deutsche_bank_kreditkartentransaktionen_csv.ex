@@ -24,7 +24,6 @@ defmodule DeutscheBankKreditkartentransaktionenCsv do
   def parse_line(2, "Offene / aktuelle Umsätze per: " <> rest = line) do
     case Regex.run(~r/Offene \/ aktuelle Umsätze per: ([0-9]{2}.[0-9]{2}.[0-9]{4})/, line) do
       [_, current_date] ->
-        current_date = Timex.parse!(current_date, "%d.%m.%Y", :strftime)
         {2, %{current_date: current_date}}
       _ -> raise "Failed to parse line 2"
     end
@@ -33,7 +32,6 @@ defmodule DeutscheBankKreditkartentransaktionenCsv do
   def parse_line(3, "Abrechnungsdatum: " <> rest = line) do
     case Regex.run(~r/Abrechnungsdatum: ([0-9]{2}.[0-9]{2}.[0-9]{4})/, line) do
       [_, last_date] ->
-        last_date = Timex.parse!(last_date, "%d.%m.%Y", :strftime)
         {3, %{last_date: last_date}}
       _ -> raise "Failed to parse line 2"
     end
@@ -53,7 +51,7 @@ defmodule DeutscheBankKreditkartentransaktionenCsv do
     {index, %{current_balance: current_balance, currency: currency}}
   end
 
-  # 23.02.2014;26.02.2014;Lorum Ipsum  ONLINESHOP BERLIN;;;;- 1,70;EUR
+  # 23.02.2014;26.02.2014;Lorem ipsum  ONLINESHOP BERLIN;;;;- 1,70;EUR
   def parse_line(index, line) when index > 4 do
     {index, %{row: parse_row(String.split(line, ";"))}}
   end
@@ -74,23 +72,21 @@ defmodule DeutscheBankKreditkartentransaktionenCsv do
     end
   end
 
-  def process([{index, %{row: row}} | entries], %{rows: rows} = result) do
-    result = Map.put(result, :rows, rows ++ [row])
+  def process([{index, %{row: row}} | entries], %{transactions: transactions} = result) do
+    result = Map.put(result, :transactions, transactions ++ [row])
     process(entries, result)
   end
 
-  def process([{index, %{row: row}} | entries], result) do
-    result = Map.put(result, :rows, [row])
+  def process([{index, %{row: row}} | entries], return) do
+    result = Map.put(return, :transactions, [row])
     process(entries, result)
   end
 
-  def process([{index, map} | entries], result) do
-    process(entries, Map.merge(result, map))
+  def process([{index, map} | entries], return) do
+    process(entries, Map.merge(return, map))
   end
 
-  def process([], result) do
-    result
-  end
+  def process([], return), do: return
 
   def import(filepath) do
     filename = Path.basename(filepath)
